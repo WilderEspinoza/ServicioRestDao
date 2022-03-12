@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.idat.idatapirest.dto.ProductRequestDTO;
 import com.idat.idatapirest.model.Products;
 import com.idat.idatapirest.service.ProductService;
 
@@ -29,7 +30,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/guardar")
-	public ResponseEntity<Void> guardar(@RequestBody Products producto){
+	public ResponseEntity<Void> guardar(@RequestBody ProductRequestDTO producto){
 		service.guardarProducto(producto);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
