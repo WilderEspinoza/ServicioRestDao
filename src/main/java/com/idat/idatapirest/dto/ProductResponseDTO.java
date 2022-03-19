@@ -2,17 +2,16 @@ package com.idat.idatapirest.dto;
 
 public class ProductResponseDTO {
 
-	private Integer idProducto;
+	private Integer idResponse;
 	private String nombreProducto;
-	private String descripcion;
-	private Double precio;
-	private Integer stock;
-	
-	public Integer getIdProducto() {
-		return idProducto;
+	private String descripcionProducto;
+	private Double precioProducto;
+	private Integer stockProducto;
+	public Integer getIdResponse() {
+		return idResponse;
 	}
-	public void setIdProducto(Integer idProducto) {
-		this.idProducto = idProducto;
+	public void setIdResponse(Integer idResponse) {
+		this.idResponse = idResponse;
 	}
 	public String getNombreProducto() {
 		return nombreProducto;
@@ -20,24 +19,25 @@ public class ProductResponseDTO {
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescripcionProducto() {
+		return descripcionProducto;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionProducto(String descripcionProducto) {
+		this.descripcionProducto = descripcionProducto;
 	}
-	public Double getPrecio() {
-		return precio;
+	public Double getPrecioProducto() {
+		return precioProducto;
 	}
-	public void setPrecio(Double precio) {
-		this.precio = precio;
+	public void setPrecioProducto(Double precioProducto) {
+		this.precioProducto = precioProducto;
 	}
-	public Integer getStock() {
-		return stock;
+	public Integer getStockProducto() {
+		return stockProducto;
 	}
-	public void setStock(Integer stock) {
-		this.stock = stock;
+	public void setStockProducto(Integer stockProducto) {
+		this.stockProducto = stockProducto;
 	}
 	
+		
 	
 }

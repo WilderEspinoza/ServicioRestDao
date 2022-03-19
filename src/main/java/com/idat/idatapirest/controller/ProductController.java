@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idat.idatapirest.dto.ProductRequestDTO;
-import com.idat.idatapirest.model.Products;
+import com.idat.idatapirest.dto.ProductResponseDTO;
 import com.idat.idatapirest.service.ProductService;
 
 @RestController
@@ -24,9 +24,9 @@ public class ProductController {
 	private ProductService service;
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/listar")
-	public ResponseEntity<List<Products>>listar(){
+	public ResponseEntity<List<ProductResponseDTO>>listar(){
 		
-		return new ResponseEntity<List<Products>>(service.listarProductos(),HttpStatus.OK);
+		return new ResponseEntity<List<ProductResponseDTO>>(service.listarProductos(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/guardar")
@@ -37,19 +37,19 @@ public class ProductController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/listar/{id}")
-	public @ResponseBody ResponseEntity<Products> productById(@PathVariable Integer id){
-		Products product = service.productById(id);
+	public @ResponseBody ResponseEntity<ProductResponseDTO> productById(@PathVariable Integer id){
+		ProductResponseDTO product = service.productById(id);
 		if(product != null) {
-			return new ResponseEntity<Products>(product, HttpStatus.OK);
+			return new ResponseEntity<ProductResponseDTO>(product, HttpStatus.OK);
 
 		}
-		return new ResponseEntity<Products>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ProductResponseDTO>(HttpStatus.NOT_FOUND);
 
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, path = "/eliminar/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable Integer id){
-		Products product = service.productById(id);
+		ProductResponseDTO product = service.productById(id);
 		if(product != null) {
 			service.eliminarProducto(id);
 			return new ResponseEntity<Void>(HttpStatus.OK);
@@ -59,10 +59,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/editar")
-	public ResponseEntity<Void> editar(@RequestBody Products producto){
-		Products product = service.productById(producto.getIdProducto());
+	public ResponseEntity<Void> editar(@RequestBody ProductRequestDTO producto){
+		ProductResponseDTO product = service.productById(producto.getIdRequest());
 		if(product != null) {
-			service.editarProducto(product);
+			service.editarProducto(producto);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
