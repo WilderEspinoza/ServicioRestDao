@@ -20,8 +20,7 @@ public class Suppliers {
 	private String direccion;
 	
 	@OneToOne
-	@JoinColumn(name="id_producto", nullable = false, unique = true, 
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_producto) references products (id_producto)"))
+	@JoinColumn(name="id_producto", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_producto) references products (id_producto)"))
 	private Products products;
 
 	public Integer getIdProveedor() {

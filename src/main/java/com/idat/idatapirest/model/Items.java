@@ -21,8 +21,7 @@ public class Items {
 	private Double total;
 	
 	@ManyToOne
-	@JoinColumn(name="id_cliente", nullable = false, unique = true, 
-	foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_cliente) references clients (id_cliente)"))
+	@JoinColumn(name="id_cliente", nullable = false, unique = true, foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_cliente) references clients (id_cliente)"))
 	private Clients client;
 
 	public Integer getIdItem() {

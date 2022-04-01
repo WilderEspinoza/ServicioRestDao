@@ -22,7 +22,7 @@ public class Clients {
 	private String cliente;
 	private String celular;
 	
-	@ManyToMany(mappedBy = "clients", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(mappedBy = "clienteproducto", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Products> products = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "client")
