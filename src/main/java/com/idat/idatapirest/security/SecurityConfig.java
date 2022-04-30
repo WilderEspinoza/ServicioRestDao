@@ -59,7 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.addFilterBefore(jWTTokenFilter, UsernamePasswordAuthenticationFilter.class)
 			.csrf().disable();
-		
 	}
 	
 	@Bean
@@ -71,7 +70,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
-	
 
 }
