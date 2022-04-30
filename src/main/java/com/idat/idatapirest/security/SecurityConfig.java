@@ -8,10 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 @EnableWebSecurity
 @Configuration
@@ -20,11 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private JWTUserDetailService jWTUserDetailService;
 	
-	@Autowired
-	private JWTTokenFilter jWTTokenFilter;
-	
-	@Autowired
-	private JWTEntryPoint jWTEntryPoint;
+//	@Autowired
+//	private JWTTokenFilter jWTTokenFilter;
+//	
+//	@Autowired
+//	private JWTEntryPoint jWTEntryPoint;
 	
 
 	@Override
@@ -46,19 +46,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //			.and()
 //			.csrf().disable();
 		
-		http.authorizeRequests()
-			.antMatchers("/crearToken").permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.exceptionHandling()
-			.authenticationEntryPoint(jWTEntryPoint)
-			.and()
-			.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-			.addFilterBefore(jWTTokenFilter, UsernamePasswordAuthenticationFilter.class)
-			.csrf().disable();
+//		http.authorizeRequests()
+//			.antMatchers("/crearToken").permitAll()
+//			.anyRequest()
+//			.authenticated()
+//			.and()
+//			.exceptionHandling()
+//			.authenticationEntryPoint(jWTEntryPoint)
+//			.and()
+//			.sessionManagement()
+//			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//			.and()
+//			.addFilterBefore(jWTTokenFilter, UsernamePasswordAuthenticationFilter.class)
+//			.csrf().disable();
+		http.anonymous().disable();
 	}
 	
 	@Bean
@@ -67,8 +68,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 	@Override
+	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
+	}
+	
+	@Bean
+	public TokenStore token() {
+		return new InMemoryTokenStore();
 	}
 
 }
